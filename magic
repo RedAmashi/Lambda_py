@@ -1,0 +1,228 @@
+class Person:
+    def __init__(self, name, age):
+        self.name = name  # Инициализация имени
+        self.age = age    # Инициализация возраста
+
+    def __str__(self):
+        return f"Name: {self.name}, Age: {self.age}"  # Форматируем строку для вывода
+
+# Пример использования
+if __name__ == "__main__":
+    person1 = Person("Alice", 30)
+    person2 = Person("Bob", 25)
+
+    print(person1)  # Вывод: Name: Alice, Age: 30
+    print(person2)  # Вывод: Name: Bob, Age: 25
+class Person:
+    def __init__(self, name, age):
+        self.name = name  # Инициализация имени
+        self.age = age    # Инициализация возраста
+
+    def __str__(self):
+        return f"Name: {self.name}, Age: {self.age}"  # Форматируем строку для вывода
+
+    def __eq__(self, other):
+        if isinstance(other, Person):
+            return self.name == other.name and self.age == other.age  # Проверка на равенство
+        return False
+
+    def __lt__(self, other):
+        if isinstance(other, Person):
+            return self.age < other.age  # Проверка на младше
+        return NotImplemented
+
+    def __gt__(self, other):
+        if isinstance(other, Person):
+            return self.age > other.age  # Проверка на старше
+        return NotImplemented
+
+# Пример использования
+if __name__ == "__main__":
+    person1 = Person("Alice", 30)
+    person2 = Person("Bob", 25)
+    person3 = Person("Alice", 30)
+
+    print(person1)  # Вывод: Name: Alice, Age: 30
+    print(person2)  # Вывод: Name: Bob, Age: 25
+
+    # Проверка равенства
+    print(person1 == person3)  # Вывод: True
+    print(person1 == person2)   # Вывод: False
+
+    # Сравнение по возрасту
+    print(person1 > person2)    # Вывод: True (Alice старше Bob)
+    print(person1 < person2)    # Вывод: False
+    print(person2 < person1)    # Вывод: True (Bob младше Alice)
+class Person:
+    def __init__(self, name, age):
+        self.name = name  # Инициализация имени
+        self.age = age    # Инициализация возраста
+
+    def __str__(self):
+        return f"Name: {self.name}, Age: {self.age}"  # Форматируем строку для вывода
+
+    def __eq__(self, other):
+        if isinstance(other, Person):
+            return self.name == other.name and self.age == other.age  # Проверка на равенство
+        return False
+
+    def __lt__(self, other):
+        if isinstance(other, Person):
+            return self.age < other.age  # Проверка на младше
+        return NotImplemented
+
+    def __gt__(self, other):
+        if isinstance(other, Person):
+            return self.age > other.age  # Проверка на старше
+        return NotImplemented
+
+
+class Collection:
+    def __init__(self):
+        self.people = []  # Инициализация списка для хранения объектов Person
+
+    def __add__(self, person):
+        if isinstance(person, Person):
+            self.people.append(person)  # Добавляем нового человека в коллекцию
+        return self  # Возвращаем саму коллекцию для цепочки вызовов
+
+    def __len__(self):
+        return len(self.people)  # Возвращаем количество людей в коллекции
+
+    def __str__(self):
+        return f"Collection of People: {[str(person) for person in self.people]}"  # Форматируем строку для вывода
+
+
+# Пример использования
+if __name__ == "__main__":
+    collection = Collection()
+
+    person1 = Person("Alice", 30)
+    person2 = Person("Bob", 25)
+
+    # Добавление людей в коллекцию
+    collection + person1
+    collection + person2
+
+    print(collection)  # Вывод: Collection of People: ['Name: Alice, Age: 30', 'Name: Bob, Age: 25']
+    print(len(collection))  # Вывод: 2
+
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name  # Инициализация имени
+        self.age = age  # Инициализация возраста
+
+    def __str__(self):
+        return f"Name: {self.name}, Age: {self.age}"  # Форматируем строку для вывода
+
+    def __eq__(self, other):
+        if isinstance(other, Person):
+            return self.name == other.name and self.age == other.age  # Проверка на равенство
+        return False
+
+    def __lt__(self, other):
+        if isinstance(other, Person):
+            return self.age < other.age  # Проверка на младше
+        return NotImplemented
+
+    def __gt__(self, other):
+        if isinstance(other, Person):
+            return self.age > other.age  # Проверка на старше
+        return NotImplemented
+
+
+class Collection:
+    def __init__(self):
+        self.people = []  # Инициализация пустого списка для хранения объектов Person
+
+    def __add__(self, person):
+        if isinstance(person, Person):
+            self.people.append(person)  # Добавляем объект Person в коллекцию
+        return self
+
+    def __len__(self):
+        return len(self.people)  # Возвращаем количество людей в коллекции
+
+    def __getitem__(self, index):
+        return self.people[index]  # Возвращаем человека по индексу
+
+    def __str__(self):
+        return ', '.join(str(person) for person in self.people)  # Форматированный вывод коллекции
+
+
+# Пример использования
+if __name__ == "__main__":
+    collection = Collection()
+
+    person1 = Person("Alice", 30)
+    person2 = Person("Bob", 25)
+    person3 = Person("Charlie", 35)
+
+    collection + person1  # Добавляем Alice
+    collection + person2  # Добавляем Bob
+    collection + person3  # Добавляем Charlie
+
+    print(f"Количество людей в коллекции: {len(collection)}")  # Вывод: 3
+    print("Люди в коллекции:")
+    print(collection)  # Вывод: Name: Alice, Age: 30, Name: Bob, Age: 25, Name: Charlie, Age: 35
+
+    # Получение человека по индексу
+    print("Человек по индексу 1:")
+    print(collection[1])  # Вывод: Name: Bob, Age: 25
+class Person:
+    def __init__(self, name, age):
+        self.name = name  # Инициализация имени
+        self.age = age    # Инициализация возраста
+
+    def __str__(self):
+        return f"Name: {self.name}, Age: {self.age}"  # Форматируем строку для вывода
+
+    def __eq__(self, other):
+        if isinstance(other, Person):
+            return self.name == other.name and self.age == other.age  # Проверка на равенство
+        return False
+
+    def __lt__(self, other):
+        if isinstance(other, Person):
+            return self.age < other.age  # Проверка на младше
+        return NotImplemented
+
+    def __gt__(self, other):
+        if isinstance(other, Person):
+            return self.age > other.age  # Проверка на старше
+        return NotImplemented
+
+
+class Collection:
+    def __init__(self):
+        self.people = []  # Инициализация списка для хранения объектов Person
+
+    def __add__(self, person):
+        if isinstance(person, Person):
+            self.people.append(person)  # Добавляем нового человека в коллекцию
+        return self  # Возвращаем саму коллекцию для цепочки вызовов
+
+    def __len__(self):
+        return len(self.people)  # Возвращаем количество людей в коллекции
+
+    def __getitem__(self, index):
+        return self.people[index]  # Позволяем получать человека по индексу
+
+    def __call__(self):
+        return [person.name for person in self.people]  # Возвращаем список имен людей в коллекции
+
+
+# Пример использования
+if __name__ == "__main__":
+    collection = Collection()
+    collection + Person("Alice", 30)
+    collection + Person("Bob", 25)
+    collection + Person("Charlie", 35)
+
+    print(f"Количество людей в коллекции: {len(collection)}")  # Выводит количество людей
+    print(f"Первый человек в коллекции: {collection[0]}")  # Выводит первого человека
+
+    # Получение списка всех имен
+    names = collection()
+    print(f"Имена людей в коллекции: {names}")  # Выводит список имен
